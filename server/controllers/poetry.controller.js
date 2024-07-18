@@ -71,18 +71,3 @@ export const likePoem = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
-
-export const getPoemById = async (req, res, next) => {
-  let poem;
-  try {
-    poem = await Poetry.findById(req.params.id);
-    if (poem == null) {
-      return res.status(404).json({ message: "Cannot find poem" });
-    }
-  } catch (err) {
-    return res.status(500).json({ message: err.message });
-  }
-
-  res.poem = poem;
-  next();
-};
