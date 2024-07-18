@@ -2,15 +2,12 @@ import express from "express";
 import {
   getAllShijingPoems,
   likeShijingPoem,
-  getShijingPoemById,
-  searchShijingPoems,
 } from "../controllers/shijing.controller.js";
+import validatePagination from "../middlewares/validation/validatePagination.js";
 
 const router = express.Router();
 
-router.get("/", getAllShijingPoems);
+router.get("/", validatePagination, getAllShijingPoems);
 router.post("/like/:id", likeShijingPoem);
-router.get("/:id", getShijingPoemById);
-router.post("/search", searchShijingPoems);
 
 export default router;
